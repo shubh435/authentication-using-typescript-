@@ -72,12 +72,9 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-userSchema.methods = {
-  authenticate: async function (password: string) {
-    const bCryptedPassword = await bcrypt.compare(password, this.hash_password);
-    console.log({ bCryptedPassword });
-    return bCryptedPassword;
-  },
+userSchema.methods.authenticate = async function (password: string) {
+  const bCryptedPassword = await bcrypt.compare(password, this.hash_password);
+  return bCryptedPassword;
 };
 
 const User = mongoose.model("User", userSchema);

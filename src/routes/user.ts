@@ -1,12 +1,40 @@
 import express, { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import User from "../model/user";
-const router = express.Router();
+import jwt from "jsonwebtoken";
+import env from "dotenv";
 
-function signin(request: Request, response: Response) {
-  response
-    .status(200)
-    .json({ message: "User is signed in successfully", body: request.body });
+env.config();
+const router = express.Router();
+const JWT_SECRET = process?.env?.JWT_SECRET ?? "";
+
+async function signin(request: Request, response: Response) {
+  const { email, password } = request.body;
+  try {
+    const user = await User.findOne({ email });
+
+    if (user) {
+      // @ts-ignore
+      const isPasswordMatched = await user.authenticate(password);
+
+      if (isPasswordMatched) {
+
+        const token = jwt.sign({ _id: user._id, role: user.role }, JWT_SECRET, {
+          expiresIn: "3d",
+        });
+        response.status(200).json({
+          message: "User is signed in successfully",
+          body: { token, user },
+        });
+      } else {
+        throw "password is incorrect";
+      }
+    } else {
+      throw "User not found";
+    }
+  } catch (error) {
+    response.status(400).json({ message: "Error in signed in", body: error });
+  }
 }
 
 async function signup(request: Request, response: Response) {
@@ -22,6 +50,7 @@ async function signup(request: Request, response: Response) {
 
   try {
     const alreadyAUser = await User.findOne({ email });
+
     if (alreadyAUser) {
       throw "User is already present in the database with this email address";
     }
