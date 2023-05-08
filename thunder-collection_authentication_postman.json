@@ -1,0 +1,111 @@
+{
+    "info": {
+        "name": "authentication",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "signin",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3333/api/signin",
+                    "path": [
+                        "api",
+                        "signin"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3333"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\":\"test@gmail.com\",\n \"password\" :\"123456\"\n}"
+                }
+            }
+        },
+        {
+            "name": "signup",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3333/api/signup",
+                    "path": [
+                        "api",
+                        "signup"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3333"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"employeeName\" :\"shubham sarode\",\n  \"gender\":\"male\",\n  \"designation\":\"sr. developer\",\n  \"email\":\"test111@gmail.com\",\n  \"contactNumber\":\"8605234316\",\n  \"password\":\"123456\",\n  \"role\":\"user\"\n}"
+                }
+            }
+        },
+        {
+            "name": "getalluser",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3333/api/user",
+                    "path": [
+                        "api",
+                        "user"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3333"
+                },
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZjNlMmVjNzdiN2RhYjYxMmQwMDIiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4MzU1MTIxNCwiZXhwIjoxNjgzODEwNDE0fQ.y0bfEKFdWmTi5znzfemH0y3Uh4FNf0a07hwAsJG-lOo"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "getalluser:_id",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3333/api/user:6458a727f17cc4065f518208",
+                    "path": [
+                        "api",
+                        "user:6458a727f17cc4065f518208"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3333"
+                },
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4YWRhYjYzMDkzY2I1NGYyZmU0OWQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODM1NTIyMjMsImV4cCI6MTY4MzgxMTQyM30.D7peost72WwlE6iDmE50zo3Uygtj2WjKEQMPvCzQ8bA"
+                    }
+                ]
+            }
+        }
+    ]
+}
