@@ -14,11 +14,9 @@ async function signin(request: Request, response: Response) {
     const user = await User.findOne({ email });
 
     if (user) {
-      // @ts-ignore
       const isPasswordMatched = await user.authenticate(password);
 
       if (isPasswordMatched) {
-
         const token = jwt.sign({ _id: user._id, role: user.role }, JWT_SECRET, {
           expiresIn: "3d",
         });

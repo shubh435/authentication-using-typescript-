@@ -1,6 +1,22 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 import bcrypt from "bcrypt";
-const userSchema = new mongoose.Schema(
+
+interface IUser extends Document {
+  employeeName: string;
+  email: string;
+  userName: string;
+  designation: string;
+  hash_password: string;
+  contactNumber: string;
+  gender: string;
+  profilePicture?: string;
+  salary?: string;
+  adress?: string;
+  role: "user" | "admin";
+  authenticate: (password: string) => boolean;
+}
+
+const userSchema = new mongoose.Schema<IUser>(
   {
     employeeName: {
       type: String,
@@ -51,7 +67,7 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
 
-    salry: {
+    salary: {
       type: String,
     },
 
