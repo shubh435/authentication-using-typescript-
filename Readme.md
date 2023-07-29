@@ -33,4 +33,6 @@ h) To configure the nodemon to the project create one nodemon.config file and ad
 "ignore": [],
 "exec": "npx ts-node ./src/index.ts"
 }
+i) Add one line in package.json in the script
+"start": "npx nodemon"
 ```
