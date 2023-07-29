@@ -1,4 +1,4 @@
-a) Type command:-
+``` a) Type command:-
 npm init -y
 b) Add express server using command:-
 npm i express @types/express
@@ -33,3 +33,4 @@ h) To configure the nodemon to the project create one nodemon.config file and ad
 "ignore": [],
 "exec": "npx ts-node ./src/index.ts"
 }
+```
