@@ -88,14 +88,28 @@ export async function signup(request: Request, response: Response) {
 
 export async function getAllUser(request: any, response: Response) {
   try {
-    const uselList = await User.find({});
+    const page = parseInt(request.query.page) || 1;
+    const limit = parseInt(request.query.page_per_page) || 10;
+
+    const skip = (page - 1) * limit;
+
+    const userList = await User.find({})
+      .skip(skip)
+      .limit(limit);
+
+    const totalUsers = await User.countDocuments();
+    const totalPages = Math.ceil(totalUsers / limit);
+
     response.status(200).json({
       message: "List of available users",
-      users: uselList,
+      users: userList,
+      currentPage: page,
+      totalPages,
+      totalUsers,
     });
   } catch (error) {
     response.status(400).json({
-      messsage: error,
+      message: error,
     });
   }
 }
